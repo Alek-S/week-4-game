@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css"> 
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	
-	<!-- jquery external file -->
+	<!-- jquery minified external -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 </head>
@@ -17,34 +17,56 @@
 		<h1>Star Wars RPG</h1>
 	</header>
 
-	<div class='select'> <!-- character selection area -->
+	<div id='select'> <!-- character selection area - starts shown. Gets hidden-->
 		<h2>Select Your Character</h2>
 
-		<div class='rebel'>	<!-- good guys -->
+		<!-- character cards - card consist of div containing name, image source and health -->
+		<a href="#" id='skywalker' class='characterCard'>
+			<h3 class='name'>Luke Skywalker</h3>
+			<img src="assets/images/skywalker.jpg">
+			<p class='health'>100</p>
+		</a>
+		<a href=""></a>
+
+		<a href="#" id='kenobi' class='characterCard'>
+			<h3 class='name'>Obi-Wan Kenobi</h3>
+			<img src="assets/images/kenobi.jpg">
+			<p class='health'>120</p>
+		</a>
+
+		<a href="#" id='maul' class='characterCard'>
+			<h3 class='name'>Darth Maul</h3>
+			<img src="assets/images/maul.jpg">
+			<p class='health'>150</p>
+		</a>
+
+		<a href="#" id='sidious' class='characterCard'>
+			<h3 class='name'>Darth Sidious</h3>
+			<img src="assets/images/sidious.jpg">
+			<p class='health'>180</p>
+		</a>
+
+	</div>
+
+	
+	<div id='opponentCharacters'> <!-- list remaining opponents to fight - starts hidden. Gets shown. -->
+		<h2>Characters Left To Attack</h2>
+	</div>
+
+	<div id='battleArea'>
+		<div id='selectedCharacter'> <!-- the character that was selected by the player - starts hidden. Gets shown. -->
+			<h2>Your Character</h2>
 		</div>
 
-		<div class='dark'> <!-- bad guys -->	
+		<button id='attack'>Attack!</button>
+
+		<div id='defender'> <!-- current character player is fighting  - starts hidden. Gets shown. -->	
+			<h2>Current Opponent</h2>
 		</div>
-
 	</div>
 
 
-	<div class='selectedCharacter'> <!-- the character that was selected by the player -->
-		<h2>Your Character</h2>
-	</div>
-
-
-	<div class='opponentCharacters'> <!-- list remaining opponents to fight -->
-		<h2>Enemies Available To Attack</h2>
-	</div>
-
-
-	<div class='defender'> <!-- current character player is fighting -->	
-		<h2>Current Opponent</h2>
-	</div>
-
-
-	<div class='result'> <!-- game result won/lost -->
+	<div id='result'> <!-- game result won/lost - starts hidden. Gets shown. -->
 	</div>
 
 </body>

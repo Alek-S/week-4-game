@@ -1,4 +1,4 @@
-/*Standard Color Notes:
+/* Notes:
 	background #535760
 	darker #3c3f46
 	lighter #787c7f
@@ -24,7 +24,8 @@ body{
 	font-family: 'Quicksand', sans-serif;
 }
 
-/*== HTML Tags ==*/
+
+/*== Standard HTML Elements ==*/
 header{
 	/*fonts*/
 	color: #dddddd;
@@ -61,8 +62,8 @@ h2{
 
 
 
-/*== DIV Sections ==*/
-.select{
+/*== DIV and Sub-Areas ==*/
+#select, #selectedCharacter, #opponentCharacters, #defender {
 	/*fonts*/
 
 	/*styling and color*/
@@ -70,54 +71,81 @@ h2{
 	border-radius: 5px;
 
 	/*positioning*/
+	max-width: 900px;
 	width: 90%;
-	height: 160px;
+	height: 200px;
 	margin: auto;
 	margin-bottom: 25px;
+	position: relative;
+	/*clear: both;*/
 }
-
-.selectedCharacter{
+#battleArea{
+	width: 1000px;
+	margin: auto;
+	padding-top: 20px;
+}
+#selectedCharacter{
+	width: 250px;
+	float: left;
+	margin-left: 25px;
+	margin-left: 10%;
+}
+#selectedCharacter h2{
+	background-color: #5793db; /*use blue top bar for player's character section*/
+}
+#battleArea button {
 	/*fonts*/
+	font-size: 1.3em;
+	color: #212326;
+	letter-spacing: 1px;
 
 	/*styling and color*/
-	background-color: #787c7f;
-	border-radius: 5px;
+	background: linear-gradient(to bottom, rgba(173,177,179,1) 0%, rgba(97,100,102,1) 100%);
+	border: 1px solid #3c3f46;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-radius: 6px;
+	outline: none; /*don't show blue focus around button*/
 
 	/*positioning*/
-	width: 90%;
-	height: 160px;
-	margin: auto;
-	margin-bottom: 25px;
+	margin-left: 10%;
+	margin-top: 65px;
 }
-
-.opponentCharacters{
+#battleArea button:hover{
+	background: linear-gradient(to bottom, rgba(210,212,213,1) 0%, rgba(116,121,123,1) 100%);
+}
+#battleArea button:active{
+	background: linear-gradient(to bottom, #7c8183 0%, #45484a 100%);
+}
+#defender{
+	width: 250px;
+	float: right;
+	margin-right: 10%;
+}
+#defender h2{
+	background-color: #db524b; /*use red top bar for selected opponent section*/
+}
+.characterCard{
 	/*fonts*/
-
-	/*styling and color*/
-	background-color: #787c7f;
-	border-radius: 5px;
+	font-size: .9em;
+	text-align: center;
 
 	/*positioning*/
-	width: 90%;
-	height: 160px;
-	margin: auto;
-	margin-bottom: 25px;
+	display: inline-block;
+	margin-top: 7px;
+	margin-left: 78px;
+}
+.characterCard .name{
+	margin-bottom: 2px;
+}
+a{
+	text-decoration: none;
+	color: #000000;
+}
+a:hover{
+	background-color: #93989b;
 }
 
-.defender{
-	/*fonts*/
 
-	/*styling and color*/
-	background-color: #787c7f;
-	border-radius: 5px;
-
-	/*positioning*/
-	width: 90%;
-	height: 160px;
-	margin: auto;
-	margin-bottom: 25px;
-}
-
-.defender h2{
-	background-color: #db524b;
-}
