@@ -63,7 +63,7 @@ h2{
 
 
 /*== DIV and Sub-Areas ==*/
-#select, #selectedCharacter, #opponentCharacters, #defender {
+#select, #selectedCharacter, #opponentCharacters, #opponent {
 	/*fonts*/
 
 	/*styling and color*/
@@ -71,8 +71,7 @@ h2{
 	border-radius: 5px;
 
 	/*positioning*/
-	max-width: 900px;
-	width: 90%;
+	width: 900px;
 	height: 200px;
 	margin: auto;
 	margin-bottom: 25px;
@@ -80,7 +79,7 @@ h2{
 	/*clear: both;*/
 }
 #battleArea{
-	width: 1000px;
+	width: 900px;
 	margin: auto;
 	padding-top: 20px;
 }
@@ -110,7 +109,7 @@ h2{
 	outline: none; /*don't show blue focus around button*/
 
 	/*positioning*/
-	margin-left: 10%;
+	margin-left: 7%;
 	margin-top: 65px;
 }
 #battleArea button:hover{
@@ -119,12 +118,12 @@ h2{
 #battleArea button:active{
 	background: linear-gradient(to bottom, #7c8183 0%, #45484a 100%);
 }
-#defender{
+#opponent{
 	width: 250px;
 	float: right;
 	margin-right: 10%;
 }
-#defender h2{
+#opponent h2{
 	background-color: #db524b; /*use red top bar for selected opponent section*/
 }
 .characterCard{
@@ -144,7 +143,7 @@ a{
 	text-decoration: none;
 	color: #000000;
 }
-a:hover{
+#select .characterCard:hover , #opponentCharacters .characterCard:hover{
 	background-color: #93989b;
 }
 

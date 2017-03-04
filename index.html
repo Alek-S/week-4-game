@@ -21,30 +21,37 @@
 		<h2>Select Your Character</h2>
 
 		<!-- character cards - card consist of div containing name, image source and health -->
-		<a href="#" id='skywalker' class='characterCard'>
-			<h3 class='name'>Luke Skywalker</h3>
-			<img src="assets/images/skywalker.jpg">
-			<p class='health'>100</p>
-		</a>
-		<a href=""></a>
+		<div class='characterCard'>
+			<a href="#" id='skywalker'>
+				<h3 class='name'>Luke Skywalker</h3>
+				<img src="assets/images/skywalker.jpg">
+				<p class='health'></p>
+			</a>
+		</div>
+		
+		<div class='characterCard'>
+			<a href="#" id='kenobi'>
+				<h3 class='name'>Obi-Wan Kenobi</h3>
+				<img src="assets/images/kenobi.jpg">
+				<p class='health'></p>
+			</a>
+		</div>
 
-		<a href="#" id='kenobi' class='characterCard'>
-			<h3 class='name'>Obi-Wan Kenobi</h3>
-			<img src="assets/images/kenobi.jpg">
-			<p class='health'>120</p>
-		</a>
+		<div class='characterCard'>
+			<a href="#" id='maul'>
+				<h3 class='name'>Darth Maul</h3>
+				<img src="assets/images/maul.jpg">
+				<p class='health'></p>
+			</a>
+		</div>
 
-		<a href="#" id='maul' class='characterCard'>
-			<h3 class='name'>Darth Maul</h3>
-			<img src="assets/images/maul.jpg">
-			<p class='health'>150</p>
-		</a>
-
-		<a href="#" id='sidious' class='characterCard'>
-			<h3 class='name'>Darth Sidious</h3>
-			<img src="assets/images/sidious.jpg">
-			<p class='health'>180</p>
-		</a>
+		<div class='characterCard'>
+			<a href="#" id='sidious'>
+				<h3 class='name'>Darth Sidious</h3>
+				<img src="assets/images/sidious.jpg">
+				<p class='health'></p>
+			</a>
+		</div>
 
 	</div>
 
@@ -56,12 +63,14 @@
 	<div id='battleArea'>
 		<div id='selectedCharacter'> <!-- the character that was selected by the player - starts hidden. Gets shown. -->
 			<h2>Your Character</h2>
+			<div class='characterCard'></div>
 		</div>
 
 		<button id='attack'>Attack!</button>
 
-		<div id='defender'> <!-- current character player is fighting  - starts hidden. Gets shown. -->	
+		<div id='opponent'> <!-- current character player is fighting  - starts hidden. Gets shown. -->	
 			<h2>Current Opponent</h2>
+			<div class='characterCard'></div>
 		</div>
 	</div>
 
@@ -69,5 +78,7 @@
 	<div id='result'> <!-- game result won/lost - starts hidden. Gets shown. -->
 	</div>
 
+	<!-- Main game script -->
+	<script type="text/javascript" src='assets/javascript/game.js'></script>
 </body>
 </html>
