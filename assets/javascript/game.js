@@ -15,7 +15,7 @@ $( document ).ready(function(){ //wait for website to load
 		reset: function(){ //reset game by reloading the page
 			window.location.reload();
 		}
-	}
+	};
 
 	function Character(first, last){ //Constructor function
 		//Properties
@@ -186,7 +186,7 @@ $( document ).ready(function(){ //wait for website to load
 				//all opponents defeated, player won the game
 					//game over message
 					$fightOver.text('Well done ' + lookup(player).firstName + ' ' + lookup(player).lastName 
-						+ '. You are victorious!')
+						+ '. You are victorious!');
 					$fightOver.addClass('won');
 
 					$resetButton.fadeIn('fast');
