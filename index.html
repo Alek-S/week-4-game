@@ -21,32 +21,32 @@
 		<h2>Select Your Character</h2>
 
 		<!-- character cards - card consist of div containing name, image source and health -->
-		<div class='characterCard'>
-			<a href="#" id='skywalker'>
+		<div class='characterCard' id='skywalker'>
+			<a href="#">
 				<h3 class='name'>Luke Skywalker</h3>
 				<img src="assets/images/skywalker.jpg">
 				<p class='health'></p>
 			</a>
 		</div>
 		
-		<div class='characterCard'>
-			<a href="#" id='kenobi'>
+		<div class='characterCard' id='kenobi'>
+			<a href="#">
 				<h3 class='name'>Obi-Wan Kenobi</h3>
 				<img src="assets/images/kenobi.jpg">
 				<p class='health'></p>
 			</a>
 		</div>
 
-		<div class='characterCard'>
-			<a href="#" id='maul'>
+		<div class='characterCard' id='maul'>
+			<a href="#">
 				<h3 class='name'>Darth Maul</h3>
 				<img src="assets/images/maul.jpg">
 				<p class='health'></p>
 			</a>
 		</div>
 
-		<div class='characterCard'>
-			<a href="#" id='sidious'>
+		<div class='characterCard' id='sidious'>
+			<a href="#">
 				<h3 class='name'>Darth Sidious</h3>
 				<img src="assets/images/sidious.jpg">
 				<p class='health'></p>
@@ -63,19 +63,23 @@
 	<div id='battleArea'>
 		<div id='selectedCharacter'> <!-- the character that was selected by the player - starts hidden. Gets shown. -->
 			<h2>Your Character</h2>
-			<div class='characterCard'></div>
+			<div class='displaySelected'></div>
 		</div>
 
-		<button id='attack'>Attack!</button>
+		<button id='attack' class='active'>Attack!</button>
 
 		<div id='opponent'> <!-- current character player is fighting  - starts hidden. Gets shown. -->	
 			<h2>Current Opponent</h2>
-			<div class='characterCard'></div>
+			<div class='displayOpponent'></div>
 		</div>
 	</div>
 
 
 	<div id='result'> <!-- game result won/lost - starts hidden. Gets shown. -->
+		<div id='playerResult'></div>
+		<div id='opponentResult'></div>
+		<div id='fightOver'></div>
+		<button id='reset'>Reset Game</button>
 	</div>
 
 	<!-- Main game script -->

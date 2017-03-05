@@ -59,40 +59,7 @@ h2{
 	padding-top: 2px;
 	padding-bottom: 2px;
 }
-
-
-
-/*== DIV and Sub-Areas ==*/
-#select, #selectedCharacter, #opponentCharacters, #opponent {
-	/*fonts*/
-
-	/*styling and color*/
-	background-color: #787c7f;
-	border-radius: 5px;
-
-	/*positioning*/
-	width: 900px;
-	height: 200px;
-	margin: auto;
-	margin-bottom: 25px;
-	position: relative;
-	/*clear: both;*/
-}
-#battleArea{
-	width: 900px;
-	margin: auto;
-	padding-top: 20px;
-}
-#selectedCharacter{
-	width: 250px;
-	float: left;
-	margin-left: 25px;
-	margin-left: 10%;
-}
-#selectedCharacter h2{
-	background-color: #5793db; /*use blue top bar for player's character section*/
-}
-#battleArea button {
+button {
 	/*fonts*/
 	font-size: 1.3em;
 	color: #212326;
@@ -112,11 +79,49 @@ h2{
 	margin-left: 7%;
 	margin-top: 65px;
 }
-#battleArea button:hover{
+button:hover{
 	background: linear-gradient(to bottom, rgba(210,212,213,1) 0%, rgba(116,121,123,1) 100%);
 }
-#battleArea button:active{
+button:active{
 	background: linear-gradient(to bottom, #7c8183 0%, #45484a 100%);
+}
+
+
+/*== DIV and Sub-Areas ==*/
+#select, #selectedCharacter, #opponentCharacters, #opponent {
+	/*fonts*/
+
+	/*styling and color*/
+	background-color: #787c7f;
+	border-radius: 5px;
+
+	/*positioning*/
+	width: 900px;
+	height: 200px;
+	margin: auto;
+	margin-bottom: 25px;
+	position: relative;
+	/*clear: both;*/
+}
+#select{
+	margin-top: 150px;
+}
+#opponentCharacters, #battleArea{
+	display: none;
+}
+#battleArea{
+	width: 900px;
+	margin: auto;
+	padding-top: 20px;
+}
+#selectedCharacter{
+	width: 250px;
+	float: left;
+	margin-left: 25px;
+	margin-left: 10%;
+}
+#selectedCharacter h2{
+	background-color: #5793db; /*use blue top bar for player's character section*/
 }
 #opponent{
 	width: 250px;
@@ -146,5 +151,35 @@ a{
 #select .characterCard:hover , #opponentCharacters .characterCard:hover{
 	background-color: #93989b;
 }
-
+.opponent, .opponentNoSelect{
+	margin-left: 130px;
+}
+.selected,.fighting{
+	margin-left: 60px;
+}
+#result{
+	display: none;
+	width: 720px;
+	clear: both;
+	margin: auto;
+	text-align: center;
+	background-color: #787c7f;
+	border-radius: 5px;
+	line-height: 120%;
+	padding-bottom: 5px;
+}
+#result .lost{
+	transition: background-color 2.5s;
+	background-color: #db524b;
+	border-radius: 5px;
+	width: 450px;
+    margin: auto;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+#reset{
+	display: none;
+	margin:auto;
+}
 
