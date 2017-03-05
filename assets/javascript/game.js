@@ -1,31 +1,28 @@
-//characters:
-// Luke Skywalker
-// Obi-Wan Kenobi
-// Darth Maul
-// Darth Sidious
+$( document ).ready(function(){ //wait for website to load
 
-
-//wait for website to load
-$( document ).ready(function(){
+	//cache
+	var $playerResult = $('#playerResult');
+	var $opponentResult = $('#opponentResult');
+	var $result = $('#result');
+	var $fightOver = $('#fightOver');
+	var $resetButton = $('#reset');
 
 	var game = {
-		characterList: ['skywalker', 'kenobi', 'maul', 'sidious'],
+		characterList: [], //character added when charcter is initalized
+		defeatedList: [],
 		selected: false,
 		opponent: false,
 		reset: function(){ //reset game by reloading the page
-			$('body').fadeOut('slow');
 			window.location.reload();
 		}
 	}
 
 	function Character(first, last){ //Constructor function
-
 		//Properties
 		this.firstName = first;
 		this.lastName = last;
 		this.isSelected = false; //is this the character the player is playing as
 		this.isOpponent = false; //is this character an opponent
-		this.isAlive = true; //is this character alive - for selected or opponent
 		this.health = 0;
 		this.attack = 0;
 		this.increaseAttackBy = 0;
@@ -36,21 +33,20 @@ $( document ).ready(function(){
 		this.$id = $('#' + last.toLowerCase() );
 		this.$name = $('#' + last.toLowerCase() + ' .name');
 		this.$health = $( '#' + last.toLowerCase() + ' .health');
+		this.$img = $( '#' + last.toLowerCase() + ' img');
 
 		//Methods
-		this.kill = function(){ // this character has been defeated
-			this.isAlive = false
-		};
-		
-		this.initialize = function(){ // generate this characters health and attach strength
+		this.initialize = function(){ // initialize character
+			this.$img.attr('src', this.imagePath); //populate image
 			this.health = Math.floor(Math.random() * (150 - 100) + 100); //between 100 and 150
 			this.attack = Math.floor(Math.random() * (10 - 5) + 5);
-			this.increaseAttackBy = this.attack;
-			this.counterAttack = Math.floor(Math.random() * (25 - 5) + 5);
+			this.increaseAttackBy = this.attack; //attack strength increases after each round
+			this.counterAttack = Math.floor(Math.random() * (20 - 5) + 5);
 			this.refresh();
+			game.characterList.push( last.toLowerCase() ); // add this character to game character list
 		};
 
-		this.refresh = function(){ //refresh this characters displayed health
+		this.refresh = function(){ //refresh this character's displayed health
 			this.$health.text( this.health );
 		};
 	}
@@ -68,8 +64,7 @@ $( document ).ready(function(){
 	sidious.initialize();
 
 
-	// ==== MAIN LISTEN EVENTS ====
-
+	// ==== MAIN EVENTS ====
 	//Select Player
 	$('#select .characterCard').on('click',function(){
 		if(!game.selected){
@@ -121,11 +116,12 @@ $( document ).ready(function(){
 		}
 	});
 
-	
+
 	function pickOpponent(){//Select Opponent
 		$('.opponent').on('click', function(){
-
 			if( !game.opponent ){ //if there isn't already a opponent
+				//clear results from previous round
+				resetResults();
 
 				console.log( 'Opponent Selected:' , $(this).attr('id'));
 				$(this).addClass('fighting'); //for CSS purposes
@@ -137,33 +133,19 @@ $( document ).ready(function(){
 		});
 	}
 
-
+	//ATTACK BUTTON
 	$('#attack').on( 'click', function(){
-
+		//if opponent selected and in active attack mode
 		if(game.opponent && $('#attack').attr('class') === 'active'){
 			var player = $('.selected').attr('id');
 			var opponent = $('.fighting').attr('id');
 
-			//cache
-			var $playerResult = $('#playerResult');
-			var $opponentResult = $('#opponentResult');
-			var $result = $('#result');
-			var $fightOver = $('#fightOver');
-			var $reset = $('#reset');
-
 			//each takes damage
-			console.log(player, 'attacks with:', lookup(player).attack );
-			console.log(opponent, 'counters with:', lookup(opponent).counterAttack);
-
 			lookup(player).health = lookup(player).health - lookup(opponent).counterAttack;
 			lookup(player).refresh();
 
 			lookup(opponent).health = lookup(opponent).health - lookup(player).attack;
 			lookup(opponent).refresh();
-
-			//player gains attack strength
-			lookup(player).attack += lookup(player).increaseAttackBy;
-
 
 			//show results of fight
 			$playerResult.text( lookup(player).firstName + " " + lookup(player).lastName 
@@ -172,36 +154,52 @@ $( document ).ready(function(){
 				+ ' counters with: ' + lookup(opponent).counterAttack );
 			$result.fadeIn('fast');
 
+			//player gains attack strength
+			lookup(player).attack += lookup(player).increaseAttackBy;
+
 			//if player lost
 			if(lookup(player).health <= 0 ){
-				//kill()!!!
-				lookup(player).kill();
-
+				
 				//player lost in result section
 				$fightOver.text( lookup(player).firstName + " " + lookup(player).lastName 
-					+ ' has been Defeated! All is Lost' );
+					+ ' has been defeated! All is lost.' );
 				$fightOver.addClass('lost'); //for CSS Red
 
 				//show reset button
-				$reset.fadeIn('fast');
+				$resetButton.fadeIn('fast');
 				waitForReset();
+			} else if (lookup(opponent).health <= 0 && lookup(player).health >= 1){ //if opponent lost
+				game.defeatedList.push( lookup(opponent).lastName );
+				console.log(game.defeatedList);
+
+				//if opponents left to fight
+				if(game.defeatedList.length < (game.characterList.length - 1 ) ){
+					//show player won result
+					$fightOver.text( lookup(opponent).firstName + " " + lookup(opponent).lastName 
+						+ ' has been defeated! On to the next one. . .' );
+					$fightOver.addClass('won'); //for CSS Red
+
+					//clear current opponent
+					$('.displayOpponent').empty();
+					game.opponent = false;
+				} else {
+				//all opponents defeated, player won the game
+					//game over message
+					$fightOver.text('Well done ' + lookup(player).firstName + ' ' + lookup(player).lastName 
+						+ '. You are victorious!')
+					$fightOver.addClass('won');
+
+					$resetButton.fadeIn('fast');
+					waitForReset();
+				}
 			}
-
-			//if opponent lost
-				// kill()!!!
-				//clear current opponent
-
-		}else{
-			console.log('nope!');
 		}
 	});
 
 
 	// ==== ADDITIONAL HELPER FUNCTIONS ====
 
-
-	//because the internets told me eval() was evil
-	function lookup(name){
+	function lookup(name){ //because the internets told me eval() was evil
 		switch(name){
 			case 'skywalker':
 				return skywalker;
@@ -216,17 +214,27 @@ $( document ).ready(function(){
 				return sidious;
 				break;
 			default:
-				console.log('Error', name, 'passed to lookup(), but not valid.');
+				console.log('Error:', name, 'passed to lookup() is not valid option.');
 			break;
 		}
 	}
 
-	function waitForReset(){
-		$('#attack').removeClass('active'); //can't keep attacking
+	function waitForReset(){ //Wait for player to hit reset button, can't keep attacking
+		$('#attack').removeClass('active'); 
 
 		$('#reset').on('click', function(){
 			game.reset();
 		});
+	}
+
+	function resetResults(){ //reset result section in between opponents
+		$result.hide();
+		$playerResult.empty();
+		$opponentResult.empty();
+		$resetButton.hide();
+		$fightOver.empty();
+		$fightOver.removeClass('won'); 
+		$fightOver.removeClass('lost'); 
 	}
 
 	function sanityCheck(parameter){ //see value of all players for given parameter -- for debugging
@@ -235,6 +243,5 @@ $( document ).ready(function(){
 		console.log("maul." + parameter + ": " + maul[parameter]);
 		console.log("sidious." + parameter + ": " + sidious[parameter]);
 	}
-
 
 }); //end .ready()
